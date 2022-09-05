@@ -1,15 +1,15 @@
 <template>
-  <div id="app">
+  <div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default ({
-
-})
+export default {
+  name: 'Laout'
+}
 </script>
 
-<style lang="less">
+<style>
 
 </style>
