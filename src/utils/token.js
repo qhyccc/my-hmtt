@@ -1,10 +1,14 @@
 const key = 'geek-itheima'
+
+// 设置
 export const setToken = (token) => {
-  localStorage.setToken(key, token)
+  localStorage.setItem(key, token)
 }
 
-export const getToken = () => localStorage.getToken(key)
+// 获取
+export const getToken = () => localStorage.getItem(key)
 
+// 删除
 export const removeToken = () => {
-  localStorage.removeToken(key)
+  localStorage.removeItem(key)
 }

@@ -1,4 +1,5 @@
 import request from '@/utils/request.js'
+import { getToken } from '@/utils/token.js'
 // 用户 - 登录
 export const loginAPI = ({ mobile, code }) => {
   return request({
@@ -10,3 +11,9 @@ export const loginAPI = ({ mobile, code }) => {
     }
   })
 }
+export const getUserChannelsAPI = () => request({
+  url: '/v1_0/user/channels',
+  headers: {
+    Authorization: `Bearer ${getToken()}`
+  }
+})
