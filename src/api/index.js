@@ -17,3 +17,14 @@ export const getUserChannelsAPI = () => request({
     Authorization: `Bearer ${getToken()}`
   }
 })
+export const getAllArticleListAPI = ({ channel_id, timestamp }) => request({
+  url: '/v1_0/articles',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${getToken()}`
+  },
+  params: {
+    channel_id,
+    timestamp
+  }
+})

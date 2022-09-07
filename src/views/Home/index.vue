@@ -13,7 +13,7 @@
     <van-tabs v-model="active" animated  sticky
       offset-top="1.226667rem">
     <van-tab v-for="obj in userchannelList" :key="obj.id" :title="obj.name" animated>
-      <ArticleList></ArticleList>
+      <ArticleList :list="articleList"></ArticleList>
     </van-tab>
     </van-tabs>
   </div>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { getUserChannelsAPI } from '@/api'
+import { getUserChannelsAPI, getAllArticleListAPI } from '@/api'
 import ArticleList from './components/ArticleList.vue'
 export default {
   name: 'Home',
@@ -32,13 +32,21 @@ export default {
   data () {
     return {
       active: 0,
-      userchannelList: []
+      userchannelList: [],
+      articleList: []
     }
   },
   async created () {
     const res = await getUserChannelsAPI()
     console.log(res)
     this.userchannelList = res.data.data.channels
+
+    const res2 = await getAllArticleListAPI({
+      channel_id: 0,
+      timestamp: (new Date()).getTime()
+    })
+    console.log(res2)
+    this.articleList = res2.data.data.results
   }
 }
 </script>

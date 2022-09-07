@@ -5,16 +5,20 @@
     <template #title>
       <div class="title-box">
         <!-- 标题 -->
-        <span>文章标题</span>
+        <span>{{ artobj.title }}</span>
+        <img v-if="artobj.cover.type === 1" class="thumb" :src="artobj.cover.images[0]" alt="">
       </div>
+       <div class="thumb-box" v-if="artobj.cover.type > 1">
+        <img v-for="(imgUrl,index) in artobj.cover.images" :key="index" :src="imgUrl" alt="" class="thumb">
+       </div>
     </template>
     <!-- label 区域的插槽 -->
     <template #label>
       <div class="label-box">
         <div>
-          <span>作者</span>
-          <span>0评论</span>
-          <span>8个月前</span>
+          <span>{{ artobj.art_id }}</span>
+          <span>{{ artobj.comm_count }}</span>
+          <span>{{ artobj.pubdate }}</span>
         </div>
         <!-- 反馈按钮 -->
         <van-icon name="cross" />
@@ -25,7 +29,9 @@
 
 <script>
 export default {
-
+  props: {
+    artobj: Object
+  }
 }
 </script>
 
@@ -50,5 +56,18 @@ export default {
     &:first-child{
         margin-left: 0;
     }
+}
+/* 图片的样式, 矩形黄金比例：0.618 */
+.thumb {
+  width: 113px;
+  height: 70px;
+  background-color: #f8f8f8;
+  object-fit: cover;
+}
+
+/* 三图, 图片容器 */
+.thumb-box {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
